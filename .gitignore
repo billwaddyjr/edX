@@ -1,1 +1,3 @@
 EmptyTextFile.cs
+*.cs
+bin/
