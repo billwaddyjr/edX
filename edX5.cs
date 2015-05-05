@@ -1,21 +1,20 @@
 using System;
 using System.Console;
 
-public struct Program{
+public class UProgram{
 	public string name;
-	public string degrees;//array
-	public string faculty;//array
-	public string head;
+	public Degree degree;
+	public Professor head;
 }
 
-public struct Degree{
+public class Degree{
 	public string name;
 	public int credits;
-	public string courseList;//array
-	public string prereqs;//array
+	public Course course;
+	public string prereqs;
 }
 
-public struct Student{
+public class Student{
 	public string firstName;
 	public string lastName;
 	public DateTime birthdate;
@@ -28,19 +27,20 @@ public struct Student{
 	public string degree;
 }
 
-public struct Professor{
+public class Professor{
 	public string firstName;
 	public string lastName;
 	public DateTime birthdate;
 	public decimal salary;
 	public string title;
-	public string program;
 }
 
-public struct Course{
+public class Course{
 	public string name;
 	public string prereq;
 	public int credits;
+	public Student[] studnets;
+	public Professor[] professors;
 }
 
 public static class getInfo{
@@ -82,14 +82,12 @@ public static class getInfo{
 		prof1.salary = Convert.ToDecimal(ReadLine ());
 		WriteLine ("Enter the professor's title: ");
 		prof1.title = ReadLine ();
-		WriteLine ("Enter the program the professor teaches in: ");
-		prof1.program = ReadLine ();
 
 		return prof1;
 	}
 
-	public static Program forProgram(){
-		Program prog1 = new Program ();
+	public static UProgram forProgram(){
+		UProgram prog1 = new UProgram ();
 		WriteLine ("Enter the name of the new program: ");
 		prog1.name = ReadLine ();
 		WriteLine ("Enter the degrees in this program: ");
@@ -130,7 +128,7 @@ public static class getInfo{
 }		﻿
 
 public static class output{
-	public static void programInfo(Program prog){
+	public static void programInfo(UProgram prog){
 		WriteLine ("The {0} program head is {1}, has the degrees: {2}, which are taught by: {3}", prog.name, prog.head, prog.degrees, prog.faculty);
 	}
 
@@ -151,39 +149,40 @@ public static class output{
 	}
 }
 
-public class homework4{
+public class homework5{
 	public static void Main(){
 
-		Program newProg = new Program ();
-		newProg = getInfo.forProgram ();
-		WriteLine (" ");
-		output.programInfo (newProg);
-		WriteLine (" ");
-
-		Degree newDeg = new Degree ();
-		newDeg = getInfo.forDegree ();
-		WriteLine (" ");
-		output.degreeInfo (newDeg);
-		WriteLine (" ");
-
-		Course newCourse = new Course ();
-		newCourse = getInfo.forCourse(); 
-		WriteLine (" ");
-		output.courseInfo (newCourse);
-		WriteLine (" ");
-
-		Student[] students = new Student[5];
-		for (int i = 1; i < 5; i++) {
+		Student[] students = new Student[3];
+		for (int i = 1; i < 3; i++) {
 			WriteLine ("Enter info for student {0}", i);
 			students [i] = getInfo.forStudent ();
 			WriteLine (" ");
-			output.studentInfo (students [i]);
+		}
+
+		Professor[] professors = new Professor[3];
+		for (int i = 1; i < 3; i++) {
+			WriteLine ("Enter info for Professor {0}", i);
+			professors [i] = getInfo.forProf ();
 			WriteLine (" ");
 		}
 
-		Professor newProf = new Professor ();
-		newProf = getInfo.forProf ();
-		WriteLine (" ");
-		output.profInfo (newProf);
+		Course course1 = new Course ();
+		course1.name = "Programming with C#";
+		course1.students = students;
+		course1.professors = professors;
+
+		Degree newDeg = new Degree ();
+		newDeg.name = "Bachelor of Science";
+		newDeg.course = programming;
+
+		UProgram newProg = new UProgram ();
+		newProg.name = "Information Technology";
+		newProg.degree = newDeg;
+
+		WriteLine ("The {0} program has the {1} degree", newProg.name, newProg.degree);
+		WriteLine ("The {0} degree contains the {1} course", newDeg.name, newDeg.course);
+		WriteLine ("The {0} course has {1} students enrolled", course1.name, course1.students.length);
+
+
 	}
 }
