@@ -1,6 +1,5 @@
 using System;
 using System.Console;
-using System.Collections;
 
 public class UProgram{
 	public string name {get; set;}
@@ -29,7 +28,6 @@ public class Person{
 
 public class Student : Person{
 	public decimal GPA {get; set;}
-	public Stack grades = new Stack();
 	public int year {get; set;}
 	public void TakeTest(){
 		var ex = new NotImplementedException();
@@ -50,14 +48,8 @@ public class Course{
 	public string name {get; set;}
 	public string prereq {get; set;}
 	public int credits {get; set;}
-	public ArrayList students;
-	public ArrayList professors;
-	public void ListStudents(){
-		WriteLine ("The students in the {0} course are: ", this.name);
-		foreach (Student student in this.students) {
-			WriteLine ("{0} {1}", student.firstName, student.lastName);
-		}
-	}
+	public Student[] students {get; set;}
+	public Professor[] professors {get; set;}
 }
 
 public static class getInfo{
@@ -114,29 +106,40 @@ public static class getInfo{
 	}
 }		﻿
 
-public class homework7{
+public class homework5{
 	public static void Main(){
 
-		ArrayList students = new ArrayList();
+		Student[] students = new Student[3];
 		for (int i = 0; i < 3; i++) {
 			WriteLine ("Enter info for student {0}", i+1);
-			students.Add(getInfo.forStudent ());
+			students [i] = getInfo.forStudent ();
 			WriteLine (" ");
 		}
-			
+
+		Professor[] professors = new Professor[3];
+		for (int i = 0; i < 3; i++) {
+			WriteLine ("Enter info for Professor {0}", i+1);
+			professors [i] = getInfo.forProf ();
+			WriteLine (" ");
+		}
+
 		Course course1 = new Course ();
 		course1.name = "Programming with C#";
 		course1.students = students;
+		course1.professors = professors;
 
-		foreach (Student student in course1.students) {
-			for (int i = 1; i <= 5; i++) {
-				WriteLine ("Enter grade {0} for {1}", i, student.firstName);
-				int grade = Convert.ToInt32(ReadLine ());
-				student.grades.Push (grade);
-			}
-		}
+		Degree newDeg = new Degree ();
+		newDeg.name = "Bachelor of Science";
+		newDeg.course = course1;
 
-		course1.ListStudents ();
+		UProgram newProg = new UProgram ();
+		newProg.name = "Information Technology";
+		newProg.degree = newDeg;
+
+		WriteLine ("The {0} program has the {1} degree", newProg.name, newProg.degree.name);
+		WriteLine ("The {0} degree contains the {1} course", newDeg.name, newDeg.course.name);
+		WriteLine ("The {0} course has {1} students enrolled", course1.name, course1.students.Length);
+
 
 	}
 }
