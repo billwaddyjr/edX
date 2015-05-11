@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Mod_9_Homework/MainWindow.xaml.cs">
+    <Files>
+      <File FileName="Mod_9_Homework/App.xaml" Line="1" Column="1" />
+      <File FileName="Mod_9_Homework/App.xaml.cs" Line="1" Column="1" />
+      <File FileName="Mod_9_Homework/MainWindow.xaml" Line="19" Column="5" />
+      <File FileName="Mod_9_Homework/MainWindow.xaml.cs" Line="48" Column="39" />
+      <File FileName="../edX8.cs" Line="19" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
